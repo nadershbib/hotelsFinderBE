@@ -81,6 +81,7 @@ const updateHotel = async (req, res) => {
 exports.updateHotel = updateHotel;
 const deleteHotel = async (req, res) => {
     try {
+        const foreignDelete = await index_1.default.query('DELETE FROM reviews where hotel_id=$1 ', [req.params.id]);
         const result = await index_1.default.query('DELETE FROM hotels where id=$1', [req.params.id]);
         res.status(200).json({
             message: 'successfuly deleted hotel',
